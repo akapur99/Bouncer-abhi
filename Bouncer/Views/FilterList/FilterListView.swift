@@ -98,6 +98,7 @@ struct FilterListView: View {
     @AppStorage("smartFilterEnabled", store: UserDefaults(suiteName: FilterStoreFile.groupContainer))
     private var smartFilterEnabled = true
     @State private var showingHelp = false
+    @State private var showingSpamTester = false
     @State private var showingFilterDetail = false
     @State private var showingFileImporter = false
     @State private var searchText = ""
@@ -196,6 +197,9 @@ struct FilterListView: View {
         }
         .sheet(isPresented: $showingHelp) {
             HelpView()
+        }
+        .sheet(isPresented: $showingSpamTester) {
+            SpamTesterView(onAddRules: onImport)
         }
         .sheet(isPresented: $showingFilterDetail) {
             FilterDetailContainerView(selectedDestination: scope.defaultDestination)
@@ -392,6 +396,9 @@ private extension FilterListView {
         Menu {
             Toggle(isOn: $smartFilterEnabled) {
                 Label("SMART_FILTER", systemImage: "sparkles")
+            }
+            Button("SPAM_TESTER", systemImage: "wand.and.rays") {
+                showingSpamTester = true
             }
             Divider()
             Button("IMPORT_BLOCK_LIST", systemImage: "square.and.arrow.down") {

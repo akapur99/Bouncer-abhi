@@ -132,4 +132,39 @@ final class HeuristicSpamAnalyzerTests: XCTestCase {
         allow("+13605550122", "Reminder: tomorrow is Election Day. Your polling place is Lincoln Elementary, open 7am-8pm.")
         allow("+14085550133", "Hey it's Sam. Are you coming to the campaign volunteer meeting tonight?")
     }
+
+    // MARK: - Obfuscation resistance (normalization pre-pass)
+
+    func testZeroWidthCharacterEvasion() {
+        junk("+15555550171", "Your l\u{200B}oan is pre-app\u{200B}roved! No credit check. Claim $2,500 now")
+    }
+
+    func testLeetspeakEvasion() {
+        junk("+15555550172", "Cynthia your L0an is appr0ved! N0 credit check needed. Borrow up to $5,000")
+    }
+
+    func testHomoglyphEvasion() {
+        junk("+15555550173", "Your p\u{0430}ckage could not be delivered. Update your \u{0430}ddress within 24 hours")
+        junk("+15555550174", "\u{FF23}ongratulations! You have been selected to receive a free gift card prize")
+    }
+
+    func testNormalizationDoesNotBreakHam() {
+        allow("287-87", "Your verification code is 482913. Do not share this code.")
+        allow("+14155550999", "Hey! Dinner at 7 still? Save $10 if we do happy hour lol")
+    }
+
+    // MARK: - Rule suggestion (spam tester)
+
+    func testSuggestsRegistrableDomainAndEmailSender() {
+        let suggestions = SpamTesterView.suggestRules(
+            sender: "spammer@shady.biz",
+            body: "New offer just for you: https://promo.weird-deals.example/win")
+        XCTAssertTrue(suggestions.contains { $0.phrase == "weird-deals.example" && $0.type == .message })
+        XCTAssertTrue(suggestions.contains { $0.phrase == "spammer@shady.biz" && $0.type == .sender })
+    }
+
+    func testDoesNotSuggestPhoneSenderRule() {
+        let suggestions = SpamTesterView.suggestRules(sender: "+15551234567", body: "plain message no url")
+        XCTAssertFalse(suggestions.contains { $0.type == .sender })
+    }
 }

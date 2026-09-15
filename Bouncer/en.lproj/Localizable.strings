@@ -201,3 +201,22 @@
 "REGEX_LEARN_MORE" = "What is a regular expression?";
 
 "SMART_FILTER" = "Smart Spam Filter";
+
+"SPAM_TESTER" = "Test a Spam Text";
+"TESTER_TITLE" = "Spam Tester";
+"TESTER_MESSAGE_SECTION" = "Paste the message";
+"TESTER_SENDER_PLACEHOLDER" = "Sender (optional)";
+"TESTER_BODY_PLACEHOLDER" = "Message text";
+"TESTER_RUN" = "Check Message";
+"TESTER_VERDICT_SECTION" = "Verdict";
+"TESTER_VERDICT_JUNK" = "Would be blocked as Junk";
+"TESTER_VERDICT_PROMOTION" = "Would be moved to Promotions";
+"TESTER_VERDICT_ALLOW" = "Would be allowed through";
+"TESTER_SUGGESTIONS_SECTION" = "Block messages like this";
+"TESTER_SUGGESTIONS_FOOTER" = "Adds Junk rules matching this message. Future texts that match any of these will be filtered.";
+"TESTER_ADD_RULES" = "Add Selected Rules";
+"TESTER_RULES_ADDED %lld" = "%lld rule(s) added";
+"TESTER_SUGGEST_DOMAIN" = "Blocks any message linking to this domain";
+"TESTER_SUGGEST_SENDER" = "Blocks this sender address";
+"TESTER_SUGGEST_PHRASE" = "Blocks messages containing this phrase";
+"DONE" = "Done";

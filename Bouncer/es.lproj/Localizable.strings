@@ -201,3 +201,22 @@
 "REGEX_LEARN_MORE" = "¿Qué es una expresión regular?";
 
 "SMART_FILTER" = "Filtro Inteligente de Spam";
+
+"SPAM_TESTER" = "Probar un Mensaje de Spam";
+"TESTER_TITLE" = "Probador de Spam";
+"TESTER_MESSAGE_SECTION" = "Pega el mensaje";
+"TESTER_SENDER_PLACEHOLDER" = "Remitente (opcional)";
+"TESTER_BODY_PLACEHOLDER" = "Texto del mensaje";
+"TESTER_RUN" = "Comprobar Mensaje";
+"TESTER_VERDICT_SECTION" = "Veredicto";
+"TESTER_VERDICT_JUNK" = "Se bloquearía como No Deseado";
+"TESTER_VERDICT_PROMOTION" = "Se movería a Promociones";
+"TESTER_VERDICT_ALLOW" = "Se permitiría";
+"TESTER_SUGGESTIONS_SECTION" = "Bloquear mensajes como este";
+"TESTER_SUGGESTIONS_FOOTER" = "Agrega reglas de bloqueo para este mensaje. Los textos futuros que coincidan serán filtrados.";
+"TESTER_ADD_RULES" = "Agregar Reglas Seleccionadas";
+"TESTER_RULES_ADDED %lld" = "%lld regla(s) agregada(s)";
+"TESTER_SUGGEST_DOMAIN" = "Bloquea mensajes con enlaces a este dominio";
+"TESTER_SUGGEST_SENDER" = "Bloquea esta dirección de remitente";
+"TESTER_SUGGEST_PHRASE" = "Bloquea mensajes que contengan esta frase";
+"DONE" = "Listo";

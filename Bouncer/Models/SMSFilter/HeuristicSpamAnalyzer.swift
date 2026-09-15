@@ -94,7 +94,7 @@ struct HeuristicSpamAnalyzer {
             #"\bverify your (?:account|identity|information|payment)\b"#,
             #"\byour (?:payment|card|billing) (?:method |information )?(?:was|has been|is) (?:declined|expired|suspended)\b"#,
         ])),
-        Category(name: "prize-scam", weight: 6, patterns: compile([
+        Category(name: "prize-scam", weight: junkThreshold, patterns: compile([
             #"\b(?:you(?:'ve| have)? (?:won|been selected|been chosen)|congratulations?)\b.{0,60}\b(?:prize|gift|reward|winner|\$\d|free)\b"#,
             #"\bclaim your (?:prize|reward|gift|money|funds)\b"#,
             #"\bfree (?:gift|iphone|ipad|airpods|giftcard|gift card)\b"#,
@@ -183,6 +183,57 @@ struct HeuristicSpamAnalyzer {
     private static let urlDetector: NSDataDetector? =
         try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
 
+    // MARK: - Text normalization
+    // Spammers evade keyword filters with zero-width characters, lookalike
+    // Unicode letters ("Cyrillic а"), and leetspeak ("L0an appr0ved"). All
+    // phrase matching runs on a normalized copy; URL extraction runs on the
+    // raw text so real hosts aren't mangled.
+
+    /// Zero-width and invisible code points spammers inject mid-word.
+    private static let invisibleCharacters = CharacterSet(charactersIn:
+        "\u{200B}\u{200C}\u{200D}\u{2060}\u{FEFF}\u{00AD}\u{180E}")
+
+    /// Digit/symbol-for-letter substitutions, applied only when the token
+    /// also contains letters, so "$2,500" and "24 hours" stay numeric.
+    private static let leetMap: [Character: Character] = [
+        "0": "o", "1": "l", "3": "e", "4": "a", "5": "s", "7": "t",
+        "8": "b", "@": "a", "$": "s", "!": "i",
+    ]
+
+    static func normalize(_ text: String) -> String {
+        // 1. Strip invisibles.
+        var cleaned = String(text.unicodeScalars.filter {
+            !invisibleCharacters.contains($0)
+        })
+        // 2. Fold homoglyphs: NFKD + diacritic/width/case folding collapses
+        // fullwidth forms, mathematical alphanumerics, and most Cyrillic/
+        // Greek lookalikes to ASCII.
+        cleaned = cleaned.folding(options: [.diacriticInsensitive, .widthInsensitive, .caseInsensitive], locale: nil)
+        cleaned = cleaned.applyingTransform(.toLatin, reverse: false) ?? cleaned
+        cleaned = cleaned.lowercased()
+        // 3. Leetspeak, per token: substitute only inside tokens that mix
+        // letters with the mapped characters.
+        // A char is substituted only when a letter FOLLOWS it in the same
+        // token: real leetspeak is intra-word ("L0an", "th!s"), while
+        // trailing "!"/digits ("approved!", "N0") are punctuation and must
+        // survive so word-boundary regexes still match.
+        let tokens = cleaned.split(separator: " ", omittingEmptySubsequences: false).map { token -> String in
+            let hasLetter = token.contains { $0.isLetter }
+            let hasMapped = token.contains { leetMap[$0] != nil }
+            guard hasLetter && hasMapped else { return String(token) }
+            let chars = Array(token)
+            var out = chars
+            for i in chars.indices {
+                guard leetMap[chars[i]] != nil else { continue }
+                if chars[(i + 1)...].contains(where: { $0.isLetter }) {
+                    out[i] = leetMap[chars[i]]!
+                }
+            }
+            return String(out)
+        }
+        return tokens.joined(separator: " ")
+    }
+
     // MARK: - Public API
 
     /// Analyze one message. `sender` is the raw sender string iOS passed to
@@ -191,7 +242,7 @@ struct HeuristicSpamAnalyzer {
         let text = body.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !text.isEmpty else { return Analysis(verdict: .allow, score: 0, reasons: []) }
 
-        let lowered = text.lowercased()
+        let lowered = Self.normalize(text)
 
         // 1. Protected content wins outright.
         if Self.matchesAny(Self.otpPatterns, in: lowered) {
