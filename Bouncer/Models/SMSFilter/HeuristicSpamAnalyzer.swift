@@ -106,6 +106,22 @@ struct HeuristicSpamAnalyzer {
             #"\bgift ?cards?\b.{0,50}\b(?:buy|purchase|send|payment)\b"#,
             #"\bwire transfer\b.{0,40}\b(?:urgent|immediately|today)\b"#,
         ])),
+        Category(name: "loan-spam", weight: junkThreshold, patterns: compile([
+            #"\b(?:loan|cash advance|payday|line of credit)\b.{0,60}\b(?:pre[- ]?approved|approved|qualif(?:y|ied|ies)|guaranteed|instant|fast|same[- ]day|bad credit|no credit check)\b"#,
+            #"\b(?:pre[- ]?approved|approved|eligible) (?:for )?(?:a |an )?(?:\$[\d,]+|loan|cash advance|credit line)\b"#,
+            #"\bborrow (?:up to )?\$[\d,]+\b"#,
+            #"\b\$[\d,]+\b.{0,40}\b(?:deposited|in your account|available now)\b.{0,40}\b(?:loan|advance|funds?)\b"#,
+            #"\bdebt (?:relief|forgiveness|consolidation)\b"#,
+        ])),
+        Category(name: "political-fundraising", weight: junkThreshold, patterns: compile([
+            // Donation-platform links are the single strongest tell.
+            #"\b(?:actblue|winred|secure\.anedot|ngpvan)\b"#,
+            #"\b(?:donate|chip in|pitch in|give|contribute)\b.{0,60}\b(?:\$\d|before (?:the |our )?(?:midnight |fec |end[- ]of[- ](?:month|quarter) )?deadline|match(?:ed|ing)?)\b"#,
+            #"\b\d+x[- ]?match(?:ed|ing)?\b"#,
+            #"\b(?:democrats?|republicans?|dnc|rnc|gop|maga|trump|biden|harris|congress(?:man|woman)?|senator|campaign)\b.{0,70}\b(?:donate|chip in|contribution|fundrais|deadline|match|survey|poll|petition)\b"#,
+            #"\b(?:approval|snap) poll\b"#,
+            #"\bsign (?:the|our|this) petition\b"#,
+        ])),
         Category(name: "job-scam", weight: 5, patterns: compile([
             #"\b(?:work from home|remote (?:job|position|work))\b.{0,60}\b(?:\$\d|per (?:day|week|hour)|flexible|no experience)\b"#,
             #"\b(?:recruiter|hiring manager|hr department)\b.{0,60}\b(?:whatsapp|telegram)\b"#,

@@ -104,4 +104,32 @@ final class HeuristicSpamAnalyzerTests: XCTestCase {
         allow("", "")
         allow("+15555550103", "   ")
     }
+
+    // MARK: - Loan spam ("Cynthia" wrong-name loan offers)
+
+    func testLoanSpam() {
+        junk("+18325550147", "Cynthia, your $2,500 loan is pre-approved! Funds can be deposited today. Claim now: https://fastcash-now.top/c")
+        junk("+19095550172", "Hi Cynthia! You qualify for a same-day cash advance up to $5,000. No credit check needed.")
+        junk("loans4u@gmail.com", "Bad credit OK! You are approved for a payday loan. Borrow up to $1,000 instantly.")
+        junk("+15125550118", "Final notice for Cynthia: your debt relief program enrollment expires today. Act now.")
+    }
+
+    func testLegitimateLoanTrafficAllowed() {
+        allow("CHASE", "Chase: Your loan payment of $312.44 was received. Thank you.")
+        allow("+18005559999", "Your mortgage statement is ready. Log in to your account to view it.")
+    }
+
+    // MARK: - Political fundraising spam (party-agnostic)
+
+    func testPoliticalFundraisingSpam() {
+        junk("+12025550190", "It's official: Democrats need YOU. Chip in $15 before our midnight FEC deadline and your gift is 4X-MATCHED! https://secure.actblue.com/d/xyz")
+        junk("+16155550183", "President Trump needs your answer! Take this approval poll and your donation will be 5x matched. Donate via WinRed now.")
+        junk("+13135550166", "URGENT: The GOP is counting on patriots like you. Pitch in $25 before the end-of-month deadline!")
+        junk("+17185550155", "Sign our petition to stop the radical agenda in Congress. Add your name now!")
+    }
+
+    func testCivicMessagesAllowed() {
+        allow("+13605550122", "Reminder: tomorrow is Election Day. Your polling place is Lincoln Elementary, open 7am-8pm.")
+        allow("+14085550133", "Hey it's Sam. Are you coming to the campaign volunteer meeting tonight?")
+    }
 }
