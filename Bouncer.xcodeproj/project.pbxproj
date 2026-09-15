@@ -37,6 +37,8 @@
 		AA1100000000000000000001 /* FilterStoreExtensionSafetyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000000 /* FilterStoreExtensionSafetyTests.swift */; };
 		AA1200000000000000000001 /* ErrorAlertLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1200000000000000000000 /* ErrorAlertLocalizationTests.swift */; };
 		AA2000000000000000000001 /* HeuristicSpamAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000000 /* HeuristicSpamAnalyzer.swift */; };
+		AA2300000000000000000001 /* SpamClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = AA2300000000000000000000 /* SpamClassifier.mlmodel */; };
+		AA2300000000000000000002 /* SpamClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = AA2300000000000000000000 /* SpamClassifier.mlmodel */; };
 		AA2200000000000000000001 /* SpamTesterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2200000000000000000000 /* SpamTesterView.swift */; };
 		AA2000000000000000000002 /* HeuristicSpamAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000000 /* HeuristicSpamAnalyzer.swift */; };
 		AA2100000000000000000001 /* HeuristicSpamAnalyzerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2100000000000000000000 /* HeuristicSpamAnalyzerTests.swift */; };
@@ -161,6 +163,7 @@
 		AA1100000000000000000000 /* FilterStoreExtensionSafetyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterStoreExtensionSafetyTests.swift; sourceTree = "<group>"; };
 		AA1200000000000000000000 /* ErrorAlertLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlertLocalizationTests.swift; sourceTree = "<group>"; };
 		AA2000000000000000000000 /* HeuristicSpamAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeuristicSpamAnalyzer.swift; sourceTree = "<group>"; };
+		AA2300000000000000000000 /* SpamClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SpamClassifier.mlmodel; sourceTree = "<group>"; };
 		AA2200000000000000000000 /* SpamTesterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpamTesterView.swift; path = Bouncer/Views/SpamTester/SpamTesterView.swift; sourceTree = SOURCE_ROOT; };
 		AA2100000000000000000000 /* HeuristicSpamAnalyzerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeuristicSpamAnalyzerTests.swift; sourceTree = "<group>"; };
 		D60A19C624A69F1F0002E8BD /* SMSMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSMessage.swift; sourceTree = "<group>"; };
@@ -364,6 +367,7 @@
 				D6233A7D24A651A200B37A6A /* SMSOfflineFilter.swift */,
 				AA0800000000000000000000 /* MessageFilterEngine.swift */,
 				AA2000000000000000000000 /* HeuristicSpamAnalyzer.swift */,
+				AA2300000000000000000000 /* SpamClassifier.mlmodel */,
 				AA2200000000000000000000 /* SpamTesterView.swift */,
 				AA1000000000000000000000 /* RegexValidator.swift */,
 				AA1000000000000000000001 /* RuleSaveValidator.swift */,
@@ -743,6 +747,7 @@
 				D6233A8124A6538D00B37A6A /* SMSOfflineFilter.swift in Sources */,
 				AA0800000000000000000002 /* MessageFilterEngine.swift in Sources */,
 				AA2000000000000000000002 /* HeuristicSpamAnalyzer.swift in Sources */,
+				AA2300000000000000000002 /* SpamClassifier.mlmodel in Sources */,
 				D6F184BC29F490430018FB7F /* FilterStoreFileMigrator.swift in Sources */,
 				D6F184BD29F4904E0018FB7F /* FilterV1.swift in Sources */,
 				D6233A7224A650B700B37A6A /* MessageFilterExtension.swift in Sources */,
@@ -758,6 +763,7 @@
 				D6233A7F24A651A200B37A6A /* SMSOfflineFilter.swift in Sources */,
 				AA0800000000000000000001 /* MessageFilterEngine.swift in Sources */,
 				AA2000000000000000000001 /* HeuristicSpamAnalyzer.swift in Sources */,
+				AA2300000000000000000001 /* SpamClassifier.mlmodel in Sources */,
 				AA2200000000000000000001 /* SpamTesterView.swift in Sources */,
 				AA1000000000000000000002 /* RegexValidator.swift in Sources */,
 				AA1000000000000000000003 /* RuleSaveValidator.swift in Sources */,
@@ -864,7 +870,7 @@
 				CODE_SIGN_ENTITLEMENTS = SMSFilter/SMSFilter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1392;
+				CURRENT_PROJECT_VERSION = 1396;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SMSFilter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
@@ -893,7 +899,7 @@
 				CODE_SIGN_ENTITLEMENTS = SMSFilter/SMSFilter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1392;
+				CURRENT_PROJECT_VERSION = 1396;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SMSFilter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
@@ -1051,7 +1057,7 @@
 				CODE_SIGN_ENTITLEMENTS = Bouncer/Bouncer.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1392;
+				CURRENT_PROJECT_VERSION = 1396;
 				DEVELOPMENT_ASSET_PATHS = "\"Bouncer/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
@@ -1085,7 +1091,7 @@
 				CODE_SIGN_ENTITLEMENTS = Bouncer/Bouncer.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1392;
+				CURRENT_PROJECT_VERSION = 1396;
 				DEVELOPMENT_ASSET_PATHS = "\"Bouncer/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;

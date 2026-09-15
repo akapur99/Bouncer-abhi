@@ -9,3 +9,8 @@ buildServer.json
 .compile
 build/
 xcuserdata/
+build-sim/
+ml/data/
+ml/*.csv
+ml/*.tsv
+ml/SpamClassifier.mlmodel

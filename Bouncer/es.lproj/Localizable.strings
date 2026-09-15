@@ -220,3 +220,5 @@
 "TESTER_SUGGEST_SENDER" = "Bloquea esta dirección de remitente";
 "TESTER_SUGGEST_PHRASE" = "Bloquea mensajes que contengan esta frase";
 "DONE" = "Listo";
+
+"SCOPE_TESTER" = "Probador";

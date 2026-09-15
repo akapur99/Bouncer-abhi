@@ -16,6 +16,10 @@ struct SpamTesterView: View {
     /// Adds the chosen rules to the store (wired to FilterAction.import).
     let onAddRules: ([Filter]) -> Void
 
+    /// When embedded as a lane of the rule list the chrome (nav bar, Done
+    /// button, own scroll view) belongs to the host; as a sheet it's ours.
+    var embedded: Bool = false
+
     @Environment(\.dismiss) private var dismiss
     @State private var sender = ""
     @State private var body_ = ""
@@ -32,7 +36,26 @@ struct SpamTesterView: View {
     }
 
     var body: some View {
-        NavigationStack {
+        if embedded {
+            // The Form scrolls itself; hiding its grouped background lets the
+            // host stage's backdrop show through like the other lanes.
+            form
+                .scrollContentBackground(.hidden)
+        } else {
+            NavigationStack {
+                form
+                    .navigationTitle("TESTER_TITLE")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button("DONE") { dismiss() }
+                        }
+                    }
+            }
+        }
+    }
+
+    private var form: some View {
             Form {
                 Section("TESTER_MESSAGE_SECTION") {
                     TextField("TESTER_SENDER_PLACEHOLDER", text: $sender)
@@ -101,14 +124,6 @@ struct SpamTesterView: View {
                     }
                 }
             }
-            .navigationTitle("TESTER_TITLE")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("DONE") { dismiss() }
-                }
-            }
-        }
     }
 
     @ViewBuilder

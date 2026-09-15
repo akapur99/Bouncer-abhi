@@ -220,3 +220,5 @@
 "TESTER_SUGGEST_SENDER" = "Blocks this sender address";
 "TESTER_SUGGEST_PHRASE" = "Blocks messages containing this phrase";
 "DONE" = "Done";
+
+"SCOPE_TESTER" = "Tester";

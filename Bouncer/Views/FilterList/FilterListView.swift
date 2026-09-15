@@ -9,7 +9,7 @@ import UniformTypeIdentifiers
 /// The three lanes through the door. Kept separate from `FilterDestination` so
 /// the selector stays a UI concern.
 enum RuleScope: String, CaseIterable, Identifiable {
-    case junk, allow, categories
+    case junk, allow, categories, tester
 
     var id: String { rawValue }
 
@@ -18,6 +18,7 @@ enum RuleScope: String, CaseIterable, Identifiable {
         case .allow: return "SCOPE_SAFE"
         case .junk: return "SCOPE_JUNK"
         case .categories: return "SCOPE_CATEGORIES"
+        case .tester: return "SCOPE_TESTER"
         }
     }
 
@@ -26,6 +27,7 @@ enum RuleScope: String, CaseIterable, Identifiable {
         case .allow: return "checkmark.shield.fill"
         case .junk: return "hand.raised.fill"
         case .categories: return "square.grid.2x2.fill"
+        case .tester: return "wand.and.rays"
         }
     }
 
@@ -37,6 +39,7 @@ enum RuleScope: String, CaseIterable, Identifiable {
         // colour, so borrowing one made the same amber mean "this lane" and
         // "Offers" on a single screen.
         case .categories: return Brand.tint
+        case .tester: return Brand.tint
         }
     }
 
@@ -46,6 +49,7 @@ enum RuleScope: String, CaseIterable, Identifiable {
         case .allow: return .allow
         case .junk: return .junk
         case .categories: return .promotionOther
+        case .tester: return .junk
         }
     }
 
@@ -54,6 +58,7 @@ enum RuleScope: String, CaseIterable, Identifiable {
         case .allow: return "EMPTY_LIST_ALLOW_TITLE"
         case .junk: return "EMPTY_LIST_JUNK_TITLE"
         case .categories: return "EMPTY_LIST_OTHER_TITLE"
+        case .tester: return "SCOPE_TESTER"
         }
     }
 
@@ -64,6 +69,7 @@ enum RuleScope: String, CaseIterable, Identifiable {
         case .allow: return "ADD_RULE_SAFE"
         case .junk: return "ADD_RULE_JUNK"
         case .categories: return "ADD_RULE_CATEGORY"
+        case .tester: return "ADD_RULE_JUNK"
         }
     }
 
@@ -72,6 +78,7 @@ enum RuleScope: String, CaseIterable, Identifiable {
         case .allow: return "EMPTY_LIST_ALLOW_MESSAGE"
         case .junk: return "EMPTY_LIST_JUNK_MESSAGE"
         case .categories: return "EMPTY_LIST_OTHER_MESSAGE"
+        case .tester: return "SCOPE_TESTER"
         }
     }
 
@@ -80,6 +87,8 @@ enum RuleScope: String, CaseIterable, Identifiable {
         case .allow: return filter.action == .allow
         case .junk: return filter.action == .junk
         case .categories: return filter.action != .allow && filter.action != .junk
+        // The tester lane hosts the analyzer playground, not a rule list.
+        case .tester: return false
         }
     }
 }
@@ -98,7 +107,6 @@ struct FilterListView: View {
     @AppStorage("smartFilterEnabled", store: UserDefaults(suiteName: FilterStoreFile.groupContainer))
     private var smartFilterEnabled = true
     @State private var showingHelp = false
-    @State private var showingSpamTester = false
     @State private var showingFilterDetail = false
     @State private var showingFileImporter = false
     @State private var searchText = ""
@@ -198,9 +206,6 @@ struct FilterListView: View {
         .sheet(isPresented: $showingHelp) {
             HelpView()
         }
-        .sheet(isPresented: $showingSpamTester) {
-            SpamTesterView(onAddRules: onImport)
-        }
         .sheet(isPresented: $showingFilterDetail) {
             FilterDetailContainerView(selectedDestination: scope.defaultDestination)
         }
@@ -276,7 +281,20 @@ private extension FilterListView {
         let history = laneHistory
         let idle = idleRules
 
-        return List {
+        if scope == .tester {
+            // The tester is a Form-based playground, not a rule list; it
+            // brings its own scrolling, so it can't live inside the List.
+            return AnyView(VStack(spacing: 0) {
+                header
+                ScopeSelector(selection: $scope, counts: count)
+                    .padding(.horizontal, Metrics.l)
+                    .padding(.bottom, Metrics.m)
+                SpamTesterView(onAddRules: onImport, embedded: true)
+            }
+            .animation(.snappy(duration: 0.3), value: scope))
+        }
+
+        return AnyView(List {
             Group {
                 header
 
@@ -327,7 +345,7 @@ private extension FilterListView {
             scrolled = isScrolled
         }
         .animation(.smooth(duration: 0.3), value: rows)
-        .animation(.snappy(duration: 0.3), value: scope)
+        .animation(.snappy(duration: 0.3), value: scope))
     }
 
     /// Masthead. This is a tool people open to do one job, so the header states
@@ -396,9 +414,6 @@ private extension FilterListView {
         Menu {
             Toggle(isOn: $smartFilterEnabled) {
                 Label("SMART_FILTER", systemImage: "sparkles")
-            }
-            Button("SPAM_TESTER", systemImage: "wand.and.rays") {
-                showingSpamTester = true
             }
             Divider()
             Button("IMPORT_BLOCK_LIST", systemImage: "square.and.arrow.down") {
