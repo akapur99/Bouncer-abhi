@@ -10,7 +10,7 @@ import os.log
 final class FilterStoreFile: FilterStore {
 
     static let filterListFile = "filters.json"
-    static let groupContainer = "group.com.banshai.bouncer"
+    static let groupContainer = "group.com.akapur99.bouncer"
     static let filterListFileV1 = "wordlist.filter"
 
     /// Policy applied on a decode failure. The app may heal the store so the

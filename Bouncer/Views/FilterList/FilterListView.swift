@@ -93,6 +93,10 @@ struct FilterListView: View {
     let showError: (FilterError) -> Void
     @Binding var shouldShowImportList: Bool
 
+    // Stored in the app-group defaults so the MessageFilterExtension reads
+    // the same value. Missing key = enabled: zero-config default.
+    @AppStorage("smartFilterEnabled", store: UserDefaults(suiteName: FilterStoreFile.groupContainer))
+    private var smartFilterEnabled = true
     @State private var showingHelp = false
     @State private var showingFilterDetail = false
     @State private var showingFileImporter = false
@@ -386,6 +390,10 @@ private extension FilterListView {
 
     var libraryMenu: some View {
         Menu {
+            Toggle(isOn: $smartFilterEnabled) {
+                Label("SMART_FILTER", systemImage: "sparkles")
+            }
+            Divider()
             Button("IMPORT_BLOCK_LIST", systemImage: "square.and.arrow.down") {
                 showingFileImporter = true
             }

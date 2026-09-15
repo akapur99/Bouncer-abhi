@@ -199,3 +199,5 @@
 "LANE_WINDOW_CAPTION" = "mensajes filtrados en los últimos 30 días";
 "RULE_SECTION_HEADER %lld" = "^[%lld regla](inflect: true)";
 "REGEX_LEARN_MORE" = "¿Qué es una expresión regular?";
+
+"SMART_FILTER" = "Filtro Inteligente de Spam";

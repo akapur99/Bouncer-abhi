@@ -15,6 +15,11 @@ struct MessageFilterEngine {
 
     let filters: [Filter]
 
+    /// When true and no user rule matched, the built-in HeuristicSpamAnalyzer
+    /// scores the message. User rules always take precedence — an explicit
+    /// allow rule short-circuits before the analyzer ever runs.
+    var useSmartFilter: Bool = true
+
     func decide(sender: String?, messageBody: String?) -> (response: ILMessageFilterQueryResponse, matched: Filter?) {
         let response = ILMessageFilterQueryResponse()
         guard let sender = sender, let messageBody = messageBody else {
@@ -25,6 +30,21 @@ struct MessageFilterEngine {
         let engine = SMSOfflineFilter(filterList: filters)
         let message = SMSMessage(sender: sender, text: messageBody)
         guard let matched = engine.matchingFilter(message: message) else {
+            if useSmartFilter {
+                let analysis = HeuristicSpamAnalyzer().analyze(sender: sender, body: messageBody)
+                switch analysis.verdict {
+                case .junk:
+                    response.action = .junk
+                    response.subAction = .none
+                    return (response, nil)
+                case .promotion:
+                    response.action = .promotion
+                    response.subAction = .promotionalOthers
+                    return (response, nil)
+                case .allow:
+                    break
+                }
+            }
             response.action = .none
             response.subAction = .none
             return (response, nil)

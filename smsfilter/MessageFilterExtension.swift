@@ -24,7 +24,14 @@ final class MessageFilterExtension: ILMessageFilterExtension {
 
     private func respond(queryRequest: ILMessageFilterQueryRequest,
                          completion: @escaping (ILMessageFilterQueryResponse) -> Void) {
-        let outcome = MessageFilterEngine(filters: filters)
+        // Smart filtering is on unless the user explicitly turned it off in
+        // the app; a missing key (fresh install) must read as enabled so the
+        // filter works with zero configuration.
+        let groupDefaults = UserDefaults(suiteName: FilterStoreFile.groupContainer)
+        let smartFilterEnabled = (groupDefaults?.object(forKey: "smartFilterEnabled") as? Bool) ?? true
+        var engine = MessageFilterEngine(filters: filters)
+        engine.useSmartFilter = smartFilterEnabled
+        let outcome = engine
             .decide(sender: queryRequest.sender,
                     messageBody: queryRequest.messageBody)
         if let matched = outcome.matched {

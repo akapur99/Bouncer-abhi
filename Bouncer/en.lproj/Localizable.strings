@@ -199,3 +199,5 @@
 "LANE_WINDOW_CAPTION" = "messages handled in the last 30 days";
 "RULE_SECTION_HEADER %lld" = "^[%lld rule](inflect: true)";
 "REGEX_LEARN_MORE" = "What is a regular expression?";
+
+"SMART_FILTER" = "Smart Spam Filter";

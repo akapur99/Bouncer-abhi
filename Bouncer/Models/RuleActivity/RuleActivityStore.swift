@@ -74,7 +74,7 @@ final class RuleActivityStore: @unchecked Sendable {
     static let shared = RuleActivityStore()
 
     static let fileName = "activity.json"
-    static let groupContainer = "group.com.banshai.bouncer"
+    static let groupContainer = "group.com.akapur99.bouncer"
 
     private let queue = DispatchQueue(label: "studio.bouncer.activity")
 

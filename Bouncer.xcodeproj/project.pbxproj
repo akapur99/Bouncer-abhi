@@ -46,6 +46,8 @@
 		AA1000000000000000000002 /* RegexValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000000000000000000000 /* RegexValidator.swift */; };
 		AA1000000000000000000003 /* RuleSaveValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000000000000000000001 /* RuleSaveValidator.swift */; };
 		AA0800000000000000000002 /* MessageFilterEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0800000000000000000000 /* MessageFilterEngine.swift */; };
+		AA2000000000000000000001 /* HeuristicSpamAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000000 /* HeuristicSpamAnalyzer.swift */; };
+		AA2000000000000000000002 /* HeuristicSpamAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000000 /* HeuristicSpamAnalyzer.swift */; };
 		D6233A8324A653F200B37A6A /* FilterStoreFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6529FC824A54ADE009AE3FF /* FilterStoreFile.swift */; };
 		D62B331B24BAB16C002DFB81 /* ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B331A24BAB16C002DFB81 /* ReviewService.swift */; };
 		D62B331D24BAB18E002DFB81 /* RatingServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B331C24BAB18E002DFB81 /* RatingServiceDefault.swift */; };
@@ -61,6 +63,7 @@
 		D6625F3C2D9A122C005D05BF /* Config.swift.example in Resources */ = {isa = PBXBuildFile; fileRef = D6625F352D9A122C005D05BF /* Config.swift.example */; };
 		D664B24624AA92D200EB826D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D664B24524AA92D200EB826D /* Assets.xcassets */; };
 		D66A7C2924EB3F8C00349C3F /* SMSOfflineFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A7C2824EB3F8C00349C3F /* SMSOfflineFilterTests.swift */; };
+		AA2100000000000000000001 /* HeuristicSpamAnalyzerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2100000000000000000000 /* HeuristicSpamAnalyzerTests.swift */; };
 		D66E4EB92D99CD1F007244FA /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = D66E4EB82D99CD1F007244FA /* Auth */; };
 		D66E4EBB2D99CD1F007244FA /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = D66E4EBA2D99CD1F007244FA /* Functions */; };
 		D66E4EBD2D99CD1F007244FA /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = D66E4EBC2D99CD1F007244FA /* PostgREST */; };
@@ -164,6 +167,7 @@
 		D6233A7324A650B700B37A6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6233A7D24A651A200B37A6A /* SMSOfflineFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSOfflineFilter.swift; sourceTree = "<group>"; };
 		AA0800000000000000000000 /* MessageFilterEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageFilterEngine.swift; sourceTree = "<group>"; };
+		AA2000000000000000000000 /* HeuristicSpamAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeuristicSpamAnalyzer.swift; sourceTree = "<group>"; };
 		AA1000000000000000000000 /* RegexValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegexValidator.swift; sourceTree = "<group>"; };
 		AA1000000000000000000001 /* RuleSaveValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleSaveValidator.swift; sourceTree = "<group>"; };
 		D6233A8524A6553C00B37A6A /* Bouncer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bouncer.entitlements; sourceTree = "<group>"; };
@@ -186,6 +190,7 @@
 		D6625F362D9A122C005D05BF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D664B24524AA92D200EB826D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D66A7C2824EB3F8C00349C3F /* SMSOfflineFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSOfflineFilterTests.swift; sourceTree = "<group>"; };
+		AA2100000000000000000000 /* HeuristicSpamAnalyzerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeuristicSpamAnalyzerTests.swift; sourceTree = "<group>"; };
 		D679D67324AA758C00579223 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D67F582C24E4496300165365 /* AppSettingsDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettingsDefaults.swift; sourceTree = "<group>"; };
 		D67F582D24E4496300165365 /* AppSettingsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettingsStore.swift; sourceTree = "<group>"; };
@@ -328,6 +333,7 @@
 				D6A3888C2D9A0FCA00CEA386 /* AnalyticsServiceTests.swift */,
 				D617B44924EB19C8009E0D40 /* AppSettingsDefaultsTests.swift */,
 				D66A7C2824EB3F8C00349C3F /* SMSOfflineFilterTests.swift */,
+				AA2100000000000000000000 /* HeuristicSpamAnalyzerTests.swift */,
 				D6F0621024EC69F800F47BA2 /* FilterStoreFileTests.swift */,
 				AA0700000000000000000000 /* FilterStoreRobustnessTests.swift */,
 				AA0E00000000000000000000 /* FilterStoreCorruptRecoveryTests.swift */,
@@ -355,6 +361,7 @@
 				D6EA9A8124AD2201000135E7 /* SMSFiltering.swift */,
 				D6233A7D24A651A200B37A6A /* SMSOfflineFilter.swift */,
 				AA0800000000000000000000 /* MessageFilterEngine.swift */,
+				AA2000000000000000000000 /* HeuristicSpamAnalyzer.swift */,
 				AA1000000000000000000000 /* RegexValidator.swift */,
 				AA1000000000000000000001 /* RuleSaveValidator.swift */,
 			);
@@ -732,6 +739,7 @@
 				D60A19C824A6A2C80002E8BD /* SMSMessage.swift in Sources */,
 				D6233A8124A6538D00B37A6A /* SMSOfflineFilter.swift in Sources */,
 				AA0800000000000000000002 /* MessageFilterEngine.swift in Sources */,
+				AA2000000000000000000002 /* HeuristicSpamAnalyzer.swift in Sources */,
 				D6F184BC29F490430018FB7F /* FilterStoreFileMigrator.swift in Sources */,
 				D6F184BD29F4904E0018FB7F /* FilterV1.swift in Sources */,
 				D6233A7224A650B700B37A6A /* MessageFilterExtension.swift in Sources */,
@@ -746,6 +754,7 @@
 				AA0400000000000000000002 /* RuleListComponents.swift in Sources */,
 				D6233A7F24A651A200B37A6A /* SMSOfflineFilter.swift in Sources */,
 				AA0800000000000000000001 /* MessageFilterEngine.swift in Sources */,
+				AA2000000000000000000001 /* HeuristicSpamAnalyzer.swift in Sources */,
 				AA1000000000000000000002 /* RegexValidator.swift in Sources */,
 				AA1000000000000000000003 /* RuleSaveValidator.swift in Sources */,
 				AA0100000000000000000002 /* OnboardingPage.swift in Sources */,
@@ -808,6 +817,7 @@
 				D617B44A24EB19C8009E0D40 /* AppSettingsDefaultsTests.swift in Sources */,
 				D6F0621124EC69F800F47BA2 /* FilterStoreFileTests.swift in Sources */,
 				D66A7C2924EB3F8C00349C3F /* SMSOfflineFilterTests.swift in Sources */,
+				AA2100000000000000000001 /* HeuristicSpamAnalyzerTests.swift in Sources */,
 				AA0700000000000000000001 /* FilterStoreRobustnessTests.swift in Sources */,
 				AA0E00000000000000000001 /* FilterStoreCorruptRecoveryTests.swift in Sources */,
 				AA1100000000000000000001 /* FilterStoreExtensionSafetyTests.swift in Sources */,
@@ -851,7 +861,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1386;
-				DEVELOPMENT_TEAM = J9F8F3PWTV;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SMSFilter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -860,7 +870,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 2.9.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.banshai.bouncer.smsfilter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akapur99.bouncer.smsfilter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -880,7 +890,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1386;
-				DEVELOPMENT_TEAM = J9F8F3PWTV;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SMSFilter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -889,7 +899,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 2.9.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.banshai.bouncer.smsfilter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akapur99.bouncer.smsfilter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -939,7 +949,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = J9F8F3PWTV;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -1005,7 +1015,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = J9F8F3PWTV;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -1039,7 +1049,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1386;
 				DEVELOPMENT_ASSET_PATHS = "\"Bouncer/Preview Content\"";
-				DEVELOPMENT_TEAM = J9F8F3PWTV;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Bouncer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Bouncer;
@@ -1050,7 +1060,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.9.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.banshai.bouncer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akapur99.bouncer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1073,7 +1083,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1386;
 				DEVELOPMENT_ASSET_PATHS = "\"Bouncer/Preview Content\"";
-				DEVELOPMENT_TEAM = J9F8F3PWTV;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Bouncer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Bouncer;
@@ -1084,7 +1094,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.9.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.banshai.bouncer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akapur99.bouncer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1102,7 +1112,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = J9F8F3PWTV;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = BouncerTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1110,7 +1120,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.banshai.BouncerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akapur99.BouncerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1129,7 +1139,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = J9F8F3PWTV;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = BouncerTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1137,7 +1147,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.banshai.BouncerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akapur99.BouncerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
